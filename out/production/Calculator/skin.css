@@ -1,0 +1,42 @@
+.root{
+    -fx-background-color: #ffffff;
+}
+
+.label{
+    -fx-background-color: #dddddd;
+    -fx-text-fill: #000000;
+    -fx-background-radius: 5px;
+    -fx-font-size: 18px;
+    -fx-padding: 10px;
+}
+
+
+
+.operator{
+    -fx-background-color: #666666;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Microsoft YaHei UI";
+    -fx-font-size: 18px;
+}
+
+.button{
+    -fx-background-color: #2d3035;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Microsoft YaHei UI";
+    -fx-font-size: 18px;
+}
+
+#BUTTON_CLEAR,#BUTTON_BACK{
+    -fx-background-color: #ff4e4e;
+    -fx-text-fill: #ffffff;
+}
+
+#BUTTON_ADD, #BUTTON_MINUS, #BUTTON_MULTIPLY, #BUTTON_DIVIDE, #BUTTON_LEFT_PAREN, #BUTTON_RIGHT_PAREN{
+    -fx-background-color: #afb5c5;
+    -fx-text-fill: #ffffff;
+}
+
+#BUTTON_EQUAL{
+    -fx-background-color: #3a98ce;
+    -fx-text-fill: #ffffff;
+}
