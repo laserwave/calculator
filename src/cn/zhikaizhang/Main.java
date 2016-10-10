@@ -1,4 +1,4 @@
-package sample;
+package cn.zhikaizhang;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

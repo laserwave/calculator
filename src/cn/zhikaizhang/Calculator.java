@@ -1,4 +1,4 @@
-package sample;
+package cn.zhikaizhang;
 
 import java.text.DecimalFormat;
 import java.util.*;
