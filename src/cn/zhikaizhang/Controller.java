@@ -130,13 +130,13 @@ public class Controller {
     @FXML
     public void BUTTON_MULTIPLY_ONCLICK(ActionEvent event){
         pressOperator();
-        LABEL.setText(LABEL.getText() + "×");
+        LABEL.setText(LABEL.getText() + "*");
     }
 
     @FXML
     public void BUTTON_DIVIDE_ONCLICK(ActionEvent event){
         pressOperator();
-        LABEL.setText(LABEL.getText() + "÷");
+        LABEL.setText(LABEL.getText() + "/");
     }
 
     @FXML
@@ -150,7 +150,7 @@ public class Controller {
 
         press();
         String s = LABEL.getText();
-        if(s == "" || s.charAt(0) == '='){
+        if(s == null ||  s.length() == 0 || s.charAt(0) == '='){
             return;
         }
         try{
@@ -169,8 +169,8 @@ public class Controller {
      */
     public void press(){
         String s = LABEL.getText();
-        if(s != ""){
-            if(s.length() > 5 && s.substring(0, 5).equals("Error")){
+        if(s != null && s.length() > 0){
+            if(s.length() >= 5 && s.substring(0, 5).equals("Error")){
                 LABEL.setText("");
             }
         }
@@ -182,7 +182,7 @@ public class Controller {
     public void pressNumber(){
         press();
         String s = LABEL.getText();
-        if(s != ""){
+        if(s != null && s.length() > 0){
             if(s.charAt(0) == '='){
                 LABEL.setText("");
             }
@@ -195,7 +195,7 @@ public class Controller {
     public void pressOperator(){
         press();
         String s = LABEL.getText();
-        if(s != ""){
+        if(s != null && s.length() > 0){
             if(s.charAt(0) == '='){
                 LABEL.setText(s.substring(1, s.length()));
             }

@@ -1,98 +1,115 @@
 package cn.zhikaizhang;
 
-import java.math.BigDecimal;
+import cn.zhikaizhang.Calculator.ExpressionIllegalException;
 
 /**
  * 表达式的运算单元，表示一个操作数或者一个运算符
  */
 public class Unit {
 
-    private UnitType unitType;
+    enum Type{ADD, SUBSTRACT, MULTIPLY, DIVIDE, POSITIVE, NEGATIVE, POWER, FACTORIAL, LEFT_BRACKET, RIGHT_BRACKET, START_STOP_SIGN, OPERAND};
 
-    private char op;
+    private Type type;
+
+    private int priority;
 
     private double val;
 
-    public Unit() {
-    }
-
-    public Unit(char op) {
-        this.unitType = UnitType.OPERATOR;
-        this.op = op;
-    }
-
     public Unit(double val) {
-        this.unitType = UnitType.OPERAND;
+        this.type = Type.OPERAND;
         this.val = val;
     }
 
-    public UnitType getUnitType() {
-        return unitType;
+    public Unit(Type type) {
+
+        this.type = type;
+        switch(type){
+            case ADD:
+            case SUBSTRACT:
+                this.priority = 1;
+                break;
+            case MULTIPLY:
+            case DIVIDE:
+                this.priority = 2;
+                break;
+            case POSITIVE:
+            case NEGATIVE:
+                this.priority = 3;
+                break;
+            case POWER:
+                this.priority = 4;
+                break;
+            case FACTORIAL:
+                this.priority = 5;
+                break;
+        }
     }
 
-    public void setUnitType(UnitType unitType) {
-        this.unitType = unitType;
-    }
-
-    public char getOp() {
-        return op;
-    }
-
-    public void setOp(char op) {
-        this.op = op;
+    public Type getType() {
+        return type;
     }
 
     public double getVal() {
         return val;
     }
 
-    public void setVal(double val) {
-        this.val = val;
+    public int getPriority() {
+        return priority;
     }
 
-    enum UnitType{OPERATOR, OPERAND};
+    public Unit operate(Unit ...operands) throws ExpressionIllegalException{
 
-    public Unit operate(Unit operand1, Unit operand2) {
-        if(unitType != UnitType.OPERATOR || operand1.unitType != UnitType.OPERAND || operand2.unitType != UnitType.OPERAND){
-            return null;
+        if(isUnary() && operands.length == 1 && operands[0].getType() == Type.OPERAND){
+            switch(type){
+                case POSITIVE:
+                    return new Unit(Operation.positive(operands[0].getVal()));
+                case NEGATIVE:
+                    return new Unit(Operation.negative(operands[0].getVal()));
+                case FACTORIAL:
+                    return new Unit(Operation.factorial(operands[0].getVal()));
+            }
+        }else if(isBinary() && operands.length == 2 && operands[0].getType() == Type.OPERAND &&operands[1].getType() == Type.OPERAND){
+            switch(type){
+                case ADD:
+                    return new Unit(Operation.add(operands[0].getVal(), operands[1].getVal()));
+                case SUBSTRACT:
+                    return new Unit(Operation.substract(operands[0].getVal(), operands[1].getVal()));
+                case MULTIPLY:
+                    return new Unit(Operation.multiply(operands[0].getVal(), operands[1].getVal()));
+                case DIVIDE:
+                    return new Unit(Operation.divide(operands[0].getVal(), operands[1].getVal()));
+                case POWER:
+                    return new Unit(Operation.power(operands[0].getVal(), operands[1].getVal()));
+            }
         }
-        double n1 = operand1.val;
-        double n2 = operand2.val;
-
-        if(op == '+'){
-            if(isNanOrInfinite(operand1.val + operand2.val)){
-                return new Unit(operand1.val + operand2.val);
-            }
-            return new Unit(new BigDecimal(String.valueOf(operand1.val)).add(new BigDecimal(String.valueOf(operand2.val))).doubleValue());
-        }else if(op == '-'){
-            if(isNanOrInfinite(operand1.val - operand2.val)){
-                return new Unit(operand1.val - operand2.val);
-            }
-            return new Unit(new BigDecimal(String.valueOf(operand1.val)).subtract(new BigDecimal(String.valueOf(operand2.val))).doubleValue());
-        }else if(op == '×' || op == '*') {
-            if(isNanOrInfinite(operand1.val * operand2.val)){
-                return new Unit(operand1.val * operand2.val);
-            }
-            return new Unit(new BigDecimal(String.valueOf(operand1.val)).multiply(new BigDecimal(String.valueOf(operand2.val))).doubleValue());
-        }else {
-            if(isNanOrInfinite(operand1.val / operand2.val)){
-                return new Unit(operand1.val / operand2.val);
-            }
-            return new Unit(new BigDecimal(String.valueOf(operand1.val)).divide(new BigDecimal(String.valueOf(operand2.val)), 14, BigDecimal.ROUND_HALF_UP).doubleValue());
-        }
+        throw new ExpressionIllegalException();
     }
 
-    private boolean isNanOrInfinite(double n){
-        return Double.isInfinite(n) || Double.isNaN(n);
+
+    public boolean isUnary(){
+        return type == Type.POSITIVE || type == Type.NEGATIVE || type == Type.FACTORIAL;
+    }
+
+    public boolean isBinary(){
+        return type == Type.ADD || type == Type.SUBSTRACT || type == Type.MULTIPLY || type == Type.DIVIDE || type == Type.POWER;
+    }
+
+    public boolean isNormalOperator(){
+        return isUnary() || isBinary();
+    }
+
+    public boolean isOperator(){
+        return type != Type.OPERAND;
     }
 
     @Override
     public String toString() {
 
-        if(unitType == UnitType.OPERATOR){
-            return "运算符 " + op + " ";
+        if(type == Type.OPERAND){
+            return type.toString() + " " + val + " ";
         }else{
-            return "操作数 " + val + " ";
+            return type.toString() + " ";
         }
+
     }
 }
