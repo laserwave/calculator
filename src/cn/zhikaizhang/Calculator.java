@@ -12,6 +12,9 @@ public class Calculator {
             throw new ExpressionIllegalException();
         }
         if(u1.isNormalOperator() && u2.isNormalOperator()){
+            if(u1.getType() == Type.POWER && u2.getType() == Type.NEGATIVE){
+                return '<';
+            }
             return u1.getPriority()>=u2.getPriority()?'>':'<';
         }else if(u2.getType() == Type.LEFT_BRACKET){
             return '<';
@@ -127,7 +130,7 @@ public class Calculator {
                         case '.':
                             throw new ExpressionIllegalException();
                     }
-                    flag = (c == '*' || c == '/' || c == '(' || c == '#');
+                    flag = (c == '*' || c == '/' || c == '^' || c == '(' || c == '#');
                 }
             }
         }
@@ -203,7 +206,7 @@ public class Calculator {
     }
 
     public static void main(String[] args) throws ExpressionIllegalException{
-        String s = "1+3";
+        String s = "3^-2";
         try{
             System.out.println(s + "=" + Calculator.calculate(s));
         }catch(ExpressionIllegalException e){

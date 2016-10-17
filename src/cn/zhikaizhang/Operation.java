@@ -55,7 +55,7 @@ public class Operation {
 
     public static double power(double n1, double n2){
 
-        if(Double.isInfinite(Math.pow(n1, n2)) || Double.isNaN(Math.pow(n1, n2)) || n2 != (int)n2){
+        if(Double.isInfinite(Math.pow(n1, n2)) || Double.isNaN(Math.pow(n1, n2)) || n2 != (int)n2 || n2 < 0 || n2 > 999999999){
             return Math.pow(n1, n2);
         }else{
             return new BigDecimal(String.valueOf(n1)).pow((int)n2).doubleValue();
