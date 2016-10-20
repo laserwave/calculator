@@ -1,13 +1,15 @@
-package cn.zhikaizhang;
+package cn.zhikaizhang.algorithm;
 
-import cn.zhikaizhang.Calculator.ExpressionIllegalException;
+import cn.zhikaizhang.algorithm.ExpressionIllegalException;
+
 
 /**
- * 表达式的运算单元，表示一个操作数或者一个运算符
+ * 运算单元（操作数或广义的运算符）
+ * 将可运算的运算符、左右括号、起止符并称为广义运算符
  */
 public class Unit {
 
-    enum Type{ADD, SUBSTRACT, MULTIPLY, DIVIDE, POSITIVE, NEGATIVE, POWER, FACTORIAL, LEFT_BRACKET, RIGHT_BRACKET, START_STOP_SIGN, OPERAND};
+    enum Type{ADD, SUBSTRACT, SIN, COS, TAN, LN, LOG, MULTIPLY, DIVIDE, EE, POSITIVE, NEGATIVE, POWER, FACTORIAL, LEFT_BRACKET, RIGHT_BRACKET, START_STOP_SIGN, OPERAND};
 
     private Type type;
 
@@ -15,11 +17,17 @@ public class Unit {
 
     private double val;
 
+    /**
+     *  操作数
+     */
     public Unit(double val) {
         this.type = Type.OPERAND;
         this.val = val;
     }
 
+    /**
+     *  广义运算符
+     */
     public Unit(Type type) {
 
         this.type = type;
@@ -28,19 +36,27 @@ public class Unit {
             case SUBSTRACT:
                 this.priority = 1;
                 break;
+            case SIN:
+            case COS:
+            case TAN:
+            case LN:
+            case LOG:
+                this.priority = 2;
+                break;
             case MULTIPLY:
             case DIVIDE:
-                this.priority = 2;
+            case EE:
+                this.priority = 3;
                 break;
             case POSITIVE:
             case NEGATIVE:
-                this.priority = 3;
-                break;
-            case POWER:
                 this.priority = 4;
                 break;
-            case FACTORIAL:
+            case POWER:
                 this.priority = 5;
+                break;
+            case FACTORIAL:
+                this.priority = 6;
                 break;
         }
     }
@@ -57,6 +73,9 @@ public class Unit {
         return priority;
     }
 
+    /**
+     * 运算单元进行运算
+     */
     public Unit operate(Unit ...operands) throws ExpressionIllegalException{
 
         if(isUnary() && operands.length == 1 && operands[0].getType() == Type.OPERAND){
@@ -67,6 +86,16 @@ public class Unit {
                     return new Unit(Operation.negative(operands[0].getVal()));
                 case FACTORIAL:
                     return new Unit(Operation.factorial(operands[0].getVal()));
+                case SIN:
+                    return new Unit(Operation.sin(operands[0].getVal()));
+                case COS:
+                    return new Unit(Operation.cos(operands[0].getVal()));
+                case TAN:
+                    return new Unit(Operation.tan(operands[0].getVal()));
+                case LN:
+                    return new Unit(Operation.ln(operands[0].getVal()));
+                case LOG:
+                    return new Unit(Operation.log(operands[0].getVal()));
             }
         }else if(isBinary() && operands.length == 2 && operands[0].getType() == Type.OPERAND &&operands[1].getType() == Type.OPERAND){
             switch(type){
@@ -78,6 +107,8 @@ public class Unit {
                     return new Unit(Operation.multiply(operands[0].getVal(), operands[1].getVal()));
                 case DIVIDE:
                     return new Unit(Operation.divide(operands[0].getVal(), operands[1].getVal()));
+                case EE:
+                    return new Unit(Operation.ee(operands[0].getVal(), operands[1].getVal()));
                 case POWER:
                     return new Unit(Operation.power(operands[0].getVal(), operands[1].getVal()));
             }
@@ -86,18 +117,30 @@ public class Unit {
     }
 
 
+    /**
+     * 一元运算符
+     */
     public boolean isUnary(){
-        return type == Type.POSITIVE || type == Type.NEGATIVE || type == Type.FACTORIAL;
+        return type == Type.POSITIVE || type == Type.NEGATIVE || type == Type.FACTORIAL || type == Type.SIN || type == Type.COS || type == Type.TAN || type == Type.LN || type == Type.LOG;
     }
 
+    /**
+     * 二元运算符
+     */
     public boolean isBinary(){
-        return type == Type.ADD || type == Type.SUBSTRACT || type == Type.MULTIPLY || type == Type.DIVIDE || type == Type.POWER;
+        return type == Type.ADD || type == Type.SUBSTRACT || type == Type.MULTIPLY || type == Type.DIVIDE  || type == Type.EE || type == Type.POWER;
     }
 
+    /**
+     * 可运算的运算符
+     */
     public boolean isNormalOperator(){
         return isUnary() || isBinary();
     }
 
+    /**
+     * 广义运算符
+     */
     public boolean isOperator(){
         return type != Type.OPERAND;
     }
@@ -106,7 +149,7 @@ public class Unit {
     public String toString() {
 
         if(type == Type.OPERAND){
-            return type.toString() + " " + val + " ";
+            return val + " ";
         }else{
             return type.toString() + " ";
         }

@@ -1,5 +1,7 @@
-package cn.zhikaizhang;
+package cn.zhikaizhang.controller;
 
+import cn.zhikaizhang.algorithm.Calculator;
+import cn.zhikaizhang.algorithm.ExpressionIllegalException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -157,7 +159,7 @@ public class Controller {
             String res = Calculator.calculate(s);
             System.out.println(res);
             LABEL.setText("=" + res);
-        }catch(Calculator.ExpressionIllegalException e){
+        }catch(ExpressionIllegalException e){
             LABEL.setText(e.getMessage());
         }
 
