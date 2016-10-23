@@ -29,6 +29,6 @@ public class OperatorComparator {
         }else if(u1.isNormalOperator()){
             return '>';
         }
-        return 'e';
+        throw new ExpressionIllegalException();
     }
 }

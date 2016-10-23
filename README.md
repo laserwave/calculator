@@ -1,6 +1,6 @@
 Calculator
 ====================
-![](https://github.com/laserwave/Calculator/blob/master/images/1.png)
+![](https://github.com/laserwave/Calculator/blob/master/images/fx-Calc.png)
 
 
 Author

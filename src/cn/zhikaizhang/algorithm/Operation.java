@@ -137,4 +137,11 @@ public class Operation {
     public static double log(double n1){
         return Math.log10(n1);
     }
+
+    /**
+     * sqrt
+     */
+    public static double sqrt(double n1){
+        return power(n1, 0.5);
+    }
 }

@@ -7,6 +7,6 @@ public class ExpressionIllegalException extends Exception {
     }
 
     public ExpressionIllegalException() {
-        this("Error");
+        super();
     }
 }

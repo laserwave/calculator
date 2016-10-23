@@ -9,9 +9,6 @@ import static cn.zhikaizhang.algorithm.OperatorComparator.compareOperator;
 
 public class Calculator {
     
-    private static String DOUBLE_PATTERN = "#.##############";
-
-
     public static String calculate(String expression) throws ExpressionIllegalException{
 
         List<Unit> units = ExpressionParser.parse(expression);
@@ -66,7 +63,14 @@ public class Calculator {
         }
         Unit finalResult = operands.pop();
         Debug.debug(finalResult + "pop");
-        return Double.isNaN(finalResult.getVal())?"NaN":new DecimalFormat(DOUBLE_PATTERN).format(finalResult.getVal());
+        double res = finalResult.getVal();
+        if(Double.isNaN(res)){
+            return "NaN";
+        }else if(res < Double.parseDouble("1.0E14") || Double.isInfinite(res)){
+            return new DecimalFormat("#.##############").format(res);
+        }else{
+            return Double.toString(finalResult.getVal());
+        }
     }
 
 

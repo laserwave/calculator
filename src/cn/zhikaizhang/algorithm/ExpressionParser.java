@@ -36,13 +36,22 @@ public class ExpressionParser {
                 }
                 else if(s.charAt(i) == 'N'){   //操作数，NaN，表示未定义的运算结果，如0/0
 
-                    units.add(new Unit(Double.NaN));
-                    i += 2;
+                    if(extract(i, 3, s).equals("NaN")){
+                        units.add(new Unit(Double.NaN));
+                        i += 2;
+                    }else{
+                        throw new ExpressionIllegalException();
+                    }
+
                 }
                 else if(s.charAt(i) == 'p'){
 
-                    units.add(new Unit(Math.PI));
-                    i += 1;
+                    if(extract(i, 2, s).equals("pi")){
+                        units.add(new Unit(Math.PI));
+                        i += 1;
+                    }else{
+                        throw new ExpressionIllegalException();
+                    }
                 }
                 else if(s.charAt(i) == 'e'){
 
@@ -74,15 +83,9 @@ public class ExpressionParser {
                     i = k-1;
                     units.add(new Unit(val));
 
-                    //数字与pi、e直接相连,补上乘号
-                    if(s.charAt(i+1) == 'p'){
+                    //数字与pi、e、函数直接相连,补上乘号
+                    if("pesctl".contains(String.valueOf(s.charAt(i+1)))){
                         units.add(new Unit(Unit.Type.MULTIPLY));
-                        units.add(new Unit(Math.PI));
-                        i += 2;
-                    }else if(s.charAt(i+1) == 'e'){
-                        units.add(new Unit(Unit.Type.MULTIPLY));
-                        units.add(new Unit(Math.E));
-                        i += 1;
                     }
                 }
             }
@@ -102,24 +105,41 @@ public class ExpressionParser {
                             units.add(new Unit(Unit.Type.SUBSTRACT));
                             break;
                         case 's':
-                            units.add(new Unit(Unit.Type.SIN));
-                            i += 2;
+                            if(extract(i, 4, s).equals("sin(")){
+                                units.add(new Unit(Unit.Type.SIN));
+                                i += 2;
+                            }else if(extract(i, 5, s).equals("sqrt(")){
+                                units.add(new Unit(Unit.Type.SQRT));
+                                i += 3;
+                            }else{
+                                throw new ExpressionIllegalException();
+                            }
                             break;
                         case 'c':
-                            units.add(new Unit(Unit.Type.COS));
-                            i += 2;
+                            if(extract(i, 4, s).equals("cos(")){
+                                units.add(new Unit(Unit.Type.COS));
+                                i += 2;
+                            }else{
+                                throw new ExpressionIllegalException();
+                            }
                             break;
                         case 't':
-                            units.add(new Unit(Unit.Type.TAN));
-                            i += 2;
+                            if(extract(i, 4, s).equals("tan(")){
+                                units.add(new Unit(Unit.Type.TAN));
+                                i += 2;
+                            }else{
+                                throw new ExpressionIllegalException();
+                            }
                             break;
                         case 'l':
-                            if(s.charAt(i+1) == 'n'){
+                            if(extract(i, 3, s).equals("ln(")){
                                 units.add(new Unit(Unit.Type.LN));
                                 i += 1;
-                            }else if(s.charAt(i+1) == 'o'){
+                            }else if(extract(i, 4, s).equals("log(")){
                                 units.add(new Unit(Unit.Type.LOG));
                                 i += 2;
+                            }else{
+                                throw new ExpressionIllegalException();
                             }
                             break;
                         case '*':
@@ -147,13 +167,22 @@ public class ExpressionParser {
                             units.add(new Unit(Unit.Type.START_STOP_SIGN));
                             break;
                         case '.':
+                        default:
                             throw new ExpressionIllegalException();
                     }
-                    flag = (c == '*' || c == '/' || c == '^' || c == '(' || c == '#' || c == 's' || c == 'c' || c == 't' || c == 'l' || c == 'E');
+                    flag = (c == '*' || c == '/' || c == '^' || c == '(' || c == '#' || c == 'E');
                 }
             }
         }
 
         return units;
     }
+
+    public static String extract(int i, int num, String s) throws ExpressionIllegalException{
+        if(i+num-1 > s.length()-1){
+            throw new ExpressionIllegalException();
+        }
+        return s.substring(i, i+num);
+    }
+
 }

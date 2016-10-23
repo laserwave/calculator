@@ -1,54 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zhikaizhang.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.zhikaizhang.main.Controller">
     <children>
-        <Button fx:id="BUTTON7" layoutX="30.0" layoutY="170.0" mnemonicParsing="false" onAction="#BUTTON7_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="7">
+        <Button fx:id="BUTTON7" layoutX="119.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON7_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="7">
         </Button>
-        <Button fx:id="BUTTON8" layoutX="100.0" layoutY="170.0" mnemonicParsing="false" onAction="#BUTTON8_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="8">
+        <Button fx:id="BUTTON8" layoutX="171.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON8_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="8">
         </Button>
-        <Button fx:id="BUTTON9" layoutX="170.0" layoutY="170.0" mnemonicParsing="false" onAction="#BUTTON9_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="9">
+        <Button fx:id="BUTTON9" layoutX="223.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON9_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="9">
         </Button>
-        <Button fx:id="BUTTON4" layoutX="30.0" layoutY="240.0" mnemonicParsing="false" onAction="#BUTTON4_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="4">
+        <Button fx:id="BUTTON4" layoutX="119.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON4_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="4">
         </Button>
-        <Button fx:id="BUTTON5" layoutX="100.0" layoutY="240.0" mnemonicParsing="false" onAction="#BUTTON5_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="5">
+        <Button fx:id="BUTTON5" layoutX="171.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON5_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="5">
         </Button>
-        <Button fx:id="BUTTON6" layoutX="170.0" layoutY="240.0" mnemonicParsing="false" onAction="#BUTTON6_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="6">
+        <Button fx:id="BUTTON6" layoutX="223.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON6_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="6">
         </Button>
-        <Button fx:id="BUTTON1" layoutX="30.0" layoutY="310.0" mnemonicParsing="false" onAction="#BUTTON1_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="1">
+        <Button fx:id="BUTTON1" layoutX="119.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON1_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="1">
         </Button>
-        <Button fx:id="BUTTON2" layoutX="100.0" layoutY="310.0" mnemonicParsing="false" onAction="#BUTTON2_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="2">
+        <Button fx:id="BUTTON2" layoutX="171.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON2_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="2">
         </Button>
-        <Button fx:id="BUTTON3" layoutX="170.0" layoutY="310.0" mnemonicParsing="false" onAction="#BUTTON3_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="3">
+        <Button fx:id="BUTTON3" layoutX="223.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON3_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="3">
         </Button>
-        <Button fx:id="BUTTON0" layoutX="30.0" layoutY="380.0" mnemonicParsing="false" onAction="#BUTTON0_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="0">
+        <Button fx:id="BUTTON0" layoutX="119.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON0_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="0">
         </Button>
-        <Button fx:id="BUTTON_LEFT_PAREN" layoutX="170.0" layoutY="100.0" mnemonicParsing="false" onAction="#BUTTON_LEFT_PAREN_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="number" text="(">
+        <Button fx:id="BUTTON_LEFT_PAREN" layoutX="275.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_LEFT_PAREN_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="(">
         </Button>
-        <Button fx:id="BUTTON_DIVIDE" layoutX="240.0" layoutY="100.0" mnemonicParsing="false" onAction="#BUTTON_DIVIDE_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="÷">
+        <Button fx:id="BUTTON_DIVIDE" layoutX="275.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON_DIVIDE_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="÷">
         </Button>
-        <Button fx:id="BUTTON_MULTIPLY" layoutX="240.0" layoutY="170.0" mnemonicParsing="false" onAction="#BUTTON_MULTIPLY_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="×">
+        <Button fx:id="BUTTON_MULTIPLY" layoutX="275.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON_MULTIPLY_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="×">
         </Button>
-        <Button fx:id="BUTTON_MINUS" layoutX="240.0" layoutY="240.0" mnemonicParsing="false" onAction="#BUTTON_MINUS_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="-">
+        <Button fx:id="BUTTON_MINUS" layoutX="275.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON_MINUS_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="-">
         </Button>
-        <Button fx:id="BUTTON_ADD" layoutX="240.0" layoutY="310.0" mnemonicParsing="false" onAction="#BUTTON_ADD_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="+">
+        <Button fx:id="BUTTON_ADD" layoutX="275.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_ADD_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="+">
         </Button>
-        <Button fx:id="BUTTON_EQUAL" layoutX="240.0" layoutY="380.0" mnemonicParsing="false" onAction="#BUTTON_EQUAL_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="=">
+        <Button fx:id="BUTTON_EQUAL" layoutX="15.0" layoutY="438.0" mnemonicParsing="false" onAction="#BUTTON_EQUAL_ONCLICK" prefHeight="64.0" prefWidth="360.0" styleClass="operator" text="=">
         </Button>
-        <Button fx:id="BUTTON_CLEAR" layoutX="30.0" layoutY="100.0" mnemonicParsing="false" onAction="#BUTTON_CLEAR_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="C">
+        <Button fx:id="BUTTON_CLEAR" layoutX="327.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON_CLEAR_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="C">
         </Button>
-        <Button fx:id="BUTTON_BACK" layoutX="100.0" layoutY="100.0" mnemonicParsing="false" onAction="#BUTTON_BACK_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text="←">
+        <Button fx:id="BUTTON_BACK" layoutX="327.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_BACK_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="←">
         </Button>
-        <Label fx:id="LABEL" alignment="CENTER_RIGHT" layoutX="30.0" layoutY="30.0" prefHeight="60.0" prefWidth="270.0" text="" textAlignment="RIGHT">
-        </Label>
-        <Button fx:id="BUTTON_POINT" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" onAction="#BUTTON_POINT_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text=".">
+        <Button fx:id="BUTTON_POINT" layoutX="171.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_POINT_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text=".">
         </Button>
-        <Button fx:id="BUTTON_RIGHT_PAREN" layoutX="170.0" layoutY="380.0" mnemonicParsing="false" onAction="#BUTTON_RIGHT_PAREN_ONCLICK" prefHeight="60.0" prefWidth="60.0" styleClass="operator" text=")">
+        <Button fx:id="BUTTON_RIGHT_PAREN" layoutX="327.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_RIGHT_PAREN_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="operator" text=")">
         </Button>
-      <Text layoutX="30.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fx-cal" />
+      <Button fx:id="BUTTON_CLEAR_ALL" layoutX="327.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON_CLEAR_ALL_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="CA" />
+      <Button fx:id="BUTTON_NEGATIVE" layoutX="327.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON_NEGATIVE_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="(-)" />
+      <Button fx:id="BUTTON_FACTORIAL" layoutX="67.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON_FACTORIAL_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="!" />
+      <Button fx:id="BUTTON_POWER" layoutX="15.0" layoutY="282.0" mnemonicParsing="false" onAction="#BUTTON_POWER_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="^" />
+      <Button fx:id="BUTTON_EE" layoutX="223.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_EE_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="operator" text="EE" />
+      <Button fx:id="BUTTON_TAN" layoutX="119.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_TAN_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="tan" />
+      <Button fx:id="BUTTON_COS" layoutX="67.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_COS_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="cos" />
+      <Button fx:id="BUTTON_SIN" layoutX="15.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_SIN_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="sin" />
+      <Button fx:id="BUTTON_LOG" layoutX="171.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_LOG_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="log" />
+      <Button fx:id="BUTTON_LN" layoutX="223.0" layoutY="194.0" mnemonicParsing="false" onAction="#BUTTON_LN_ONCLICK" prefHeight="32.0" prefWidth="48.0" styleClass="number" text="ln" />
+      <Button fx:id="BUTTON_PI" layoutX="15.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON_PI_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="π" />
+      <Button fx:id="BUTTON_E" layoutX="67.0" layoutY="230.0" mnemonicParsing="false" onAction="#BUTTON_E_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="e" />
+      <Button fx:id="BUTTON_EXPONENT" layoutX="15.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_EXPONENT_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="指数" />
+      <Button fx:id="BUTTON_RECIPROCAL" layoutX="67.0" layoutY="386.0" mnemonicParsing="false" onAction="#BUTTON_RECIPROCAL_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="倒数" />
+      <Button fx:id="BUTTON_SQUARE" layoutX="15.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON_SQUARE_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="平方" />
+      <Button fx:id="BUTTON_SQRT" layoutX="67.0" layoutY="334.0" mnemonicParsing="false" onAction="#BUTTON_SQRT_ONCLICK" prefHeight="48.0" prefWidth="48.0" styleClass="number" text="开方" />
+      <Pane fx:id="screenPane" layoutX="15.0" layoutY="27.0" prefHeight="162.0" prefWidth="360.0">
+         <children>
+              <Label fx:id="LABEL1" layoutX="1.0" layoutY="1.0" onMouseClicked="#LABEL1_ONCLICK" prefHeight="32.0" prefWidth="358.0" textAlignment="RIGHT">
+               <padding>
+                  <Insets left="12.0" />
+               </padding></Label>
+            <Label fx:id="LABEL2" alignment="CENTER_RIGHT" layoutX="1.0" layoutY="33.0" onMouseClicked="#LABEL2_ONCLICK" prefHeight="32.0" prefWidth="358.0" textAlignment="RIGHT">
+               <padding>
+                  <Insets right="7.0" />
+               </padding></Label>
+            <Label fx:id="LABEL3" layoutX="1.0" layoutY="65.0" onMouseClicked="#LABEL3_ONCLICK" prefHeight="32.0" prefWidth="358.0" textAlignment="RIGHT">
+               <padding>
+                  <Insets left="12.0" />
+               </padding></Label>
+            <Label fx:id="LABEL4" alignment="CENTER_RIGHT" layoutX="1.0" layoutY="97.0" onMouseClicked="#LABEL4_ONCLICK" prefHeight="32.0" prefWidth="358.0" textAlignment="RIGHT">
+               <padding>
+                  <Insets right="7.0" />
+               </padding></Label>
+            <Label fx:id="LABEL5" layoutX="1.0" layoutY="129.0" prefHeight="32.0" prefWidth="358.0" textAlignment="RIGHT" textOverrun="LEADING_WORD_ELLIPSIS">
+               <padding>
+                  <Insets left="7.0" />
+               </padding></Label>
+            <Line endX="358.0" fill="#cccccc" layoutY="65.0" startX="2.0" stroke="#cccccc" strokeType="OUTSIDE" />
+            <Line endX="358.0" fill="BLACK" layoutY="129.0" startX="2.0" strokeType="OUTSIDE" />
+            <Rectangle fx:id="rect4" fill="#aaccff" height="31.0" layoutX="1.0" layoutY="97.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+            <Rectangle fx:id="rect3" fill="#aaccff" height="31.0" layoutX="1.0" layoutY="66.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+            <Rectangle fx:id="rect2" fill="#aaccff" height="32.0" layoutX="1.0" layoutY="32.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+            <Rectangle fx:id="rect1" fill="#aaccff" height="32.0" layoutX="1.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="5.0" />
+         </children>
+      </Pane>
+      <Button fx:id="iconify" alignment="CENTER" graphicTextGap="0.0" layoutX="345.0" layoutY="10.0" maxHeight="20.0" maxWidth="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="12.0" prefWidth="12.0" />
+      <Button fx:id="close" alignment="CENTER" graphicTextGap="0.0" layoutX="363.0" layoutY="10.0" maxHeight="20.0" maxWidth="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="12.0" prefWidth="12.0" />
+      <Text layoutX="17.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fx-Calc" />
     </children>
 </Pane>

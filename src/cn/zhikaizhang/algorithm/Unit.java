@@ -9,7 +9,7 @@ import cn.zhikaizhang.algorithm.ExpressionIllegalException;
  */
 public class Unit {
 
-    enum Type{ADD, SUBSTRACT, SIN, COS, TAN, LN, LOG, MULTIPLY, DIVIDE, EE, POSITIVE, NEGATIVE, POWER, FACTORIAL, LEFT_BRACKET, RIGHT_BRACKET, START_STOP_SIGN, OPERAND};
+    enum Type{ADD, SUBSTRACT, SIN, COS, TAN, LN, LOG, SQRT, MULTIPLY, DIVIDE, EE, POSITIVE, NEGATIVE, POWER, FACTORIAL, LEFT_BRACKET, RIGHT_BRACKET, START_STOP_SIGN, OPERAND};
 
     private Type type;
 
@@ -36,26 +36,27 @@ public class Unit {
             case SUBSTRACT:
                 this.priority = 1;
                 break;
+            case MULTIPLY:
+            case DIVIDE:
+            case EE:
+                this.priority = 2;
+                break;
+            case POSITIVE:
+            case NEGATIVE:
+                this.priority = 3;
+                break;
+            case POWER:
+                this.priority = 4;
+                break;
+            case FACTORIAL:
+                this.priority = 5;
+                break;
             case SIN:
             case COS:
             case TAN:
             case LN:
             case LOG:
-                this.priority = 2;
-                break;
-            case MULTIPLY:
-            case DIVIDE:
-            case EE:
-                this.priority = 3;
-                break;
-            case POSITIVE:
-            case NEGATIVE:
-                this.priority = 4;
-                break;
-            case POWER:
-                this.priority = 5;
-                break;
-            case FACTORIAL:
+            case SQRT:
                 this.priority = 6;
                 break;
         }
@@ -96,6 +97,8 @@ public class Unit {
                     return new Unit(Operation.ln(operands[0].getVal()));
                 case LOG:
                     return new Unit(Operation.log(operands[0].getVal()));
+                case SQRT:
+                    return new Unit(Operation.sqrt(operands[0].getVal()));
             }
         }else if(isBinary() && operands.length == 2 && operands[0].getType() == Type.OPERAND &&operands[1].getType() == Type.OPERAND){
             switch(type){
@@ -121,7 +124,7 @@ public class Unit {
      * 一元运算符
      */
     public boolean isUnary(){
-        return type == Type.POSITIVE || type == Type.NEGATIVE || type == Type.FACTORIAL || type == Type.SIN || type == Type.COS || type == Type.TAN || type == Type.LN || type == Type.LOG;
+        return type == Type.POSITIVE || type == Type.NEGATIVE || type == Type.FACTORIAL || type == Type.SIN || type == Type.COS || type == Type.TAN || type == Type.LN || type == Type.LOG || type == Type.SQRT;
     }
 
     /**

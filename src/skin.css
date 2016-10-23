@@ -1,39 +1,47 @@
 .root{
     -fx-background-color: #cccccc;
-    /*-fx-background-radius: 10px;*/
+    -fx-background-radius: 10px;
+    -fx-border-color: #999999;
+    -fx-border-radius: 10px;
+}
+
+#screenPane{
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
 }
 
 .label{
-    -fx-background-color: #dddddd;
+    -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
-    -fx-background-radius: 5px;
-    -fx-font-size: 18px;
-    -fx-padding: 10px;
+    -fx-font-size: 21px;
 }
 
+#LABEL3, #LABEL4{
+    -fx-background-color: #f6f6f6;
+}
 
 .button{
 
-    -fx-background-color: #ffe680;
     -fx-background-radius: 10px;
-    -fx-border-color: #000000;
-    -fx-border-radius: 10px;
+    -fx-border-color: #666666;
+    -fx-border-radius: 7px;
     -fx-text-fill: #000000;
     -fx-font-family: "Microsoft YaHei UI";
-    -fx-font-size: 25px;
+    -fx-font-size: 15px;
 }
 
-#BUTTON_CLEAR,#BUTTON_BACK{
-    -fx-background-color: #ff4e4e;
-    -fx-text-fill: #ffffff;
+#iconify, #close{
+    -fx-background-radius: 0px;
+    -fx-background-color: transparent;
+    -fx-border-style: none;
+    -fx-border-radius: 0px;
+    -fx-border-width: 0px;
 }
 
-#BUTTON_ADD, #BUTTON_MINUS, #BUTTON_MULTIPLY, #BUTTON_DIVIDE, #BUTTON_LEFT_PAREN, #BUTTON_RIGHT_PAREN{
-    -fx-background-color: #afb5c5;
-    -fx-text-fill: #ffffff;
+#BUTTON_SIN, #BUTTON_SIN, #BUTTON_COS, #BUTTON_TAN, #BUTTON_LOG, #BUTTON_LN, #BUTTON_LEFT_PAREN, #BUTTON_RIGHT_PAREN{
+    -fx-font-size: 13px;
 }
 
-#BUTTON_EQUAL{
-    -fx-background-color: #3a98ce;
-    -fx-text-fill: #ffffff;
+#BUTTON_SQUARE, #BUTTON_SQRT, #BUTTON_EXPONENT, #BUTTON_RECIPROCAL{
+    -fx-font-size: 10px;
 }
