@@ -2,6 +2,7 @@ Calculator
 ====================
 ![](https://github.com/laserwave/Calculator/blob/master/images/fx-Calc.png)
 
+三角函数使用弧度制单位。
 
 Author
 ======
