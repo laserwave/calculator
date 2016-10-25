@@ -7,35 +7,33 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * 使用注解获取fxml文件定义的控件以及定义事件
- */
-public class Controller {
 
+public class FxCalcMainController {
 
+    public static List<Map<String, String>> history = new ArrayList<>();
+
+    public static int position = -2;
+    
     private void fireHistoryChange(){
-        if(Data.history.size() >= 1){
-            Map<String, String> map = Data.history.get(Data.history.size() - 1);
+        fillData(LABEL3, LABEL4, history.size() - 1);
+        fillData(LABEL1, LABEL2, history.size() - 2);
+    }
+
+    private void fillData(Label l1, Label l2, int index){
+        if(index >= 0 && index < history.size()){
+            Map<String, String> map = history.get(index);
             String expression = map.get("expression");
             String result = map.get("result");
-            LABEL3.setText(expression);
-            LABEL4.setText(result);
+            l1.setText(expression);
+            l2.setText(result);
         }else{
-            LABEL3.setText("");
-            LABEL4.setText("");
-        }
-        if(Data.history.size() >= 2){
-            Map<String, String> map = Data.history.get(Data.history.size() - 2);
-            String expression = map.get("expression");
-            String result = map.get("result");
-            LABEL1.setText(expression);
-            LABEL2.setText(result);
-        }else{
-            LABEL1.setText("");
-            LABEL2.setText("");
+            l1.setText("");
+            l2.setText("");
         }
     }
 
@@ -73,8 +71,6 @@ public class Controller {
     public void LABEL4_ONCLICK(MouseEvent event){
         LABEL5.setText(LABEL5.getText() + LABEL4.getText());
     }
-
-
 
     @FXML
     public void BUTTON_SIN_ONCLICK(ActionEvent event){
@@ -153,9 +149,9 @@ public class Controller {
     @FXML
     public void BUTTON_CLEAR_ALL_ONCLICK(ActionEvent event){
         LABEL5.setText("");
-        Data.history.clear();
+        history.clear();
         fireHistoryChange();
-        Data.position = -2;
+        position = -2;
     }
 
     @FXML
@@ -182,10 +178,10 @@ public class Controller {
             LABEL5.setText("");
             return;
         }
-        if(Data.history.size() >= 1){
-            Data.history.remove(Data.history.size() - 1);
+        if(history.size() >= 1){
+            history.remove(history.size() - 1);
             fireHistoryChange();
-            Data.position -= 1;
+            position -= 1;
         }
     }
 
@@ -199,7 +195,6 @@ public class Controller {
         pressOperator();
         LABEL5.setText(LABEL5.getText() + "^-1");
     }
-
 
     @FXML
     public void BUTTON_POINT_ONCLICK(ActionEvent event){
@@ -222,35 +217,29 @@ public class Controller {
     public void BUTTON_BACK_ONCLICK(ActionEvent event){
         String s = LABEL5.getText();
         if(s != null && s.length() > 0){
-            if(s.charAt(0) == '='){
-                LABEL5.setText("");
-            }else{
-                LABEL5.setText(s.substring(0, s.length()-1));
-            }
+            LABEL5.setText(s.substring(0, s.length()-1));
         }
     }
 
     @FXML
     public void BUTTON_EQUAL_ONCLICK(ActionEvent event){
 
-        String s = LABEL5.getText();
-        if(s == null ||  s.length() == 0 || s.charAt(0) == '='){
-            return;
+        if(LABEL5.getText().length() > 0){
+            try{
+                String result = Calculator.calculate(LABEL5.getText());
+                Map<String, String> map = new HashMap<>();
+                map.put("expression", LABEL5.getText());
+                map.put("result", result);
+                history.add(map);
+                fireHistoryChange();
+                position += 1;
+                LABEL5.setText("");
+            }catch(ExpressionIllegalException e){
+                System.out.println("expression illegal");
+                // DO NOTHING
+            }
         }
-        try{
-            String result = Calculator.calculate(s);
-            Map<String, String> map = new HashMap<>();
-            map.put("expression", s);
-            map.put("result", result);
-            Data.history.add(map);
-            fireHistoryChange();
-            Data.position += 1;
-            LABEL5.setText("");
 
-        }catch(ExpressionIllegalException e){
-            System.out.println("error");
-            // DO NOTHING
-        }
     }
 
 
@@ -308,14 +297,13 @@ public class Controller {
     /**
      * 当LABEL5为空时输入必须有前置操作数的运算符时，将前置操作数设为ans
      */
-    public void pressOperator(){
+    private void pressOperator(){
 
         if(LABEL5.getText() == null || LABEL5.getText().length() == 0){
-            if(Data.history.size() > 0){
-                LABEL5.setText(Data.history.get(Data.history.size()-1).get("result"));
+            if(history.size() > 0){
+                LABEL5.setText(history.get(history.size()-1).get("result"));
             }
         }
     }
-
 
 }

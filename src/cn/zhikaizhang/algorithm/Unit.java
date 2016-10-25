@@ -1,8 +1,5 @@
 package cn.zhikaizhang.algorithm;
 
-import cn.zhikaizhang.algorithm.ExpressionIllegalException;
-
-
 /**
  * 运算单元（操作数或广义的运算符）
  * 将可运算的运算符、左右括号、起止符并称为广义运算符

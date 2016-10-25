@@ -25,9 +25,9 @@
     -fx-background-radius: 10px;
     -fx-border-color: #666666;
     -fx-border-radius: 7px;
-    -fx-text-fill: #000000;
-    -fx-font-family: "Microsoft YaHei UI";
-    -fx-font-size: 15px;
+    /*-fx-text-fill: #000000;*/
+    /*-fx-font-family: "Microsoft YaHei UI";*/
+    /*-fx-font-size: 15px;*/
 }
 
 #iconify, #close{
@@ -38,10 +38,10 @@
     -fx-border-width: 0px;
 }
 
-#BUTTON_SIN, #BUTTON_SIN, #BUTTON_COS, #BUTTON_TAN, #BUTTON_LOG, #BUTTON_LN, #BUTTON_LEFT_PAREN, #BUTTON_RIGHT_PAREN{
-    -fx-font-size: 13px;
-}
+/*#BUTTON_SIN, #BUTTON_SIN, #BUTTON_COS, #BUTTON_TAN, #BUTTON_LOG, #BUTTON_LN, #BUTTON_LEFT_PAREN, #BUTTON_RIGHT_PAREN{*/
+    /*-fx-font-size: 13px;*/
+/*}*/
 
-#BUTTON_SQUARE, #BUTTON_SQRT, #BUTTON_EXPONENT, #BUTTON_RECIPROCAL{
-    -fx-font-size: 10px;
-}
+/*#BUTTON_SQUARE, #BUTTON_SQRT, #BUTTON_EXPONENT, #BUTTON_RECIPROCAL{*/
+    /*-fx-font-size: 10px;*/
+/*}*/

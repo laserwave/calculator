@@ -2,7 +2,6 @@ package cn.zhikaizhang.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
-import cn.zhikaizhang.algorithm.ExpressionIllegalException;
 
 /**
  * 表达式分析器
@@ -19,7 +18,7 @@ public class ExpressionParser {
 
         List<Unit> units = new ArrayList<Unit>();
         /**
-         * 若一个Unit是乘号或除号或左括号或井号，flag置为true，否则置为false
+         * 若一个Unit是乘号或除号或左括号或井号或^或E，flag置为true，否则置为false
          * 若一个Unit是+，且flag为true，说明该+号表示正号
          * 若一个Unit是-，且flag为true，说明该-号表示负号
          */
@@ -178,7 +177,7 @@ public class ExpressionParser {
         return units;
     }
 
-    public static String extract(int i, int num, String s) throws ExpressionIllegalException{
+    private static String extract(int i, int num, String s) throws ExpressionIllegalException{
         if(i+num-1 > s.length()-1){
             throw new ExpressionIllegalException();
         }

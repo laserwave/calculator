@@ -79,7 +79,7 @@ public class Calculator {
         try{
             System.out.println(Calculator.calculate(s));
         }catch(ExpressionIllegalException e){
-            System.out.println(e.getMessage());
+            System.out.println("expression illegal");
         }
     }
 
