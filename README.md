@@ -13,6 +13,7 @@ Author
  * Email <zhangzhikai@seu.edu.cn>
  * Blog <http://zhikaizhang.cn>
  * [javafx实现简易计算器](http://zhikaizhang.cn/2016/10/07/javafx%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8/)
+ * [从简易计算器到科学计算器](http://zhikaizhang.cn/2016/11/02/%E4%BB%8E%E7%AE%80%E6%98%93%E8%AE%A1%E7%AE%97%E5%99%A8%E5%88%B0%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E5%99%A8/)
 
 License
 =======

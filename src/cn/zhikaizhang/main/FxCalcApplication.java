@@ -3,7 +3,9 @@ package cn.zhikaizhang.main;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,6 +42,8 @@ public class FxCalcApplication extends Application {
         stage.getIcons().add(new Image(FxCalcApplication.class.getResourceAsStream("/images/logo.png")));
         stage.setResizable(false);
         stage.show();
+
+
     }
 
 
